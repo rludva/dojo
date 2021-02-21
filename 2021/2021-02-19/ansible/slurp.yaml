@@ -1,0 +1,11 @@
+---
+- name: "Testing slurp playbook.."
+  hosts: torii-workstation.local.nutius.com
+  gather_facts: false
+  tasks:
+    - name: "Remote machine mounts.."
+      slurp:
+        src: /proc/mounts
+      register: mounts
+    - debug:
+        msg: "Value: {{ mounts['content'] | b64decode | replace('\n', '')}}"

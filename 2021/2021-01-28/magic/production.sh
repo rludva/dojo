@@ -1,0 +1,1 @@
+export MAGIC_NUMBER=""

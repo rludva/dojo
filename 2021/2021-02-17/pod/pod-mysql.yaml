@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  namespace: nutius
+  labels:
+    environment: poc
+spec:
+  containers:
+    - name: server
+      image: registry.redhat.io/rhscl/mysql-57-rhel7:latest
+      ports:
+        - containerPort: 3306
+          name: mysql
+      env:
+      - name: MYSQL_USER
+        value: user1
+      - name: MYSQL_PASSWORD
+        value: pa55word
+      - name: MYSQL_ROOT_PASSWORD
+        value: Pa55Word
+      volumeMounts:
+      - name: data-storage
+        mountPath: /var/lib/mysql
+  restartPolicy: Never
